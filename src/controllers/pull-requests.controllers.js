@@ -1,4 +1,3 @@
-import axios from 'axios';
 import collectOpenPullRequestGeneralData from '../helpers/collectOpenPullRequestGeneralData.js';
 import { getPullRequest } from '../services/githubService.js';
 
