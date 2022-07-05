@@ -1,6 +1,7 @@
 import Express from 'express';
 import Path from 'path';
 import Dotenv from 'dotenv';
+import routes from './routes/pull-requests.js';
 
 Dotenv.config({ path: Path.resolve(process.cwd(), '.env') });
 
@@ -15,5 +16,7 @@ app.get('/', (req, res) => {
 if(process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => console.log(`SERVER RUNNING: PORT ${PORT}`));
 }
+
+app.use('/api/github', routes);
 
 export default app;
