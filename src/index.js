@@ -3,7 +3,7 @@ import Path from 'path';
 import Dotenv from 'dotenv';
 import routes from './routes/pull-requests.js';
 
-Dotenv.config({ path: Path.resolve(process.cwd(), '.env') });
+Dotenv.config({ path: Path.resolve(process.cwd(), '.env') }); // Added so .env file variables can be used
 
 const app = Express();
 
@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the GitHub pull request microservice!')
 });
 
-if(process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test') { // This is added so that EADDRINUSE error isn't thrown when running tests
   app.listen(PORT, () => console.log(`SERVER RUNNING: PORT ${PORT}`));
 }
 
