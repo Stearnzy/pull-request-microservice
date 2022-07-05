@@ -1,7 +1,7 @@
 import collectOpenPullRequestGeneralData from '../helpers/collectOpenPullRequestGeneralData.js';
 import { getPullRequest } from '../services/githubService.js';
 
-const getPullRequests = async function (req, res) {
+const getPullRequestData = async (req, res) => {
   const {
     organization,
     repository,
@@ -35,4 +35,4 @@ const getPullRequests = async function (req, res) {
   res.send(openPullRequests);
 }
 
-export default getPullRequests;
+export default getPullRequestData;
