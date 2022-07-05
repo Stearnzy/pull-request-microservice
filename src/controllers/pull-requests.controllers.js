@@ -7,14 +7,12 @@ const getPullRequests = async function (req, res) {
     repository,
   } = req.params;
 
-  let pageNumber = 1;
-
   let openPullRequests;
+
   try {
     openPullRequests = await collectOpenPullRequestGeneralData({
       organization,
       repository,
-      pageNumber,
       accumulator: [],
     });
   } catch (err) {

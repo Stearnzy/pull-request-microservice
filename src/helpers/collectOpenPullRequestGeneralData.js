@@ -3,7 +3,7 @@ import { getOpenPullRequests } from '../services/githubService.js';
 const collectOpenPullRequestGeneralData = async ({
   organization,
   repository,
-  pageNumber,
+  pageNumber = 1,
   accumulator,
 }) => {
   const openPullRequestsRaw = await getOpenPullRequests({ organization, repository, pageNumber });
