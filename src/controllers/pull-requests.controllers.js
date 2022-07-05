@@ -1,4 +1,5 @@
 import axios from 'axios';
+import collectOpenPullRequestGeneralData from '../helpers/collectOpenPullRequestGeneralData.js';
 
 const getPullRequests = async function (req, res) {
   const {
@@ -8,53 +9,20 @@ const getPullRequests = async function (req, res) {
 
   let pageNumber = 1;
 
-  const collectPullRequestData = async function ({
-    org,
-    repo,
-    page,
-    pullRequests,
-  }) {
-    const openPullRequestsRaw = await axios.get(`https://api.github.com/repos/${org}/${repo}/pulls?state=open&per_page=100&page=${page}`, {
-      auth: { username: process.env.GITHUB_USERNAME, token: process.env.GITHUB_ACCESS_TOKEN }
-    });
-
-    const openPullRequestData = openPullRequestsRaw.data;
-
-    if (openPullRequestData.length > 0) {
-      const trimmedPRData = openPullRequestData.map(pullRequest => {
-        return {
-          id: pullRequest.id,
-          number: pullRequest.number,
-          title: pullRequest.title,
-          author: pullRequest.user.login,
-        };
-      });
-
-      pullRequests.push(...trimmedPRData);
-
-      page += 1;
-
-      await collectPullRequestData({ org, repo, page, pullRequests });
-    }
-
-    return pullRequests;
-  };
-
-  let trimmedPullRequests;
+  let openPullRequests;
   try {
-    trimmedPullRequests = await collectPullRequestData({
-      org: organization,
-      repo: repository,
-      page: pageNumber,
-      pullRequests: [],
+    openPullRequests = await collectOpenPullRequestGeneralData({
+      organization,
+      repository,
+      pageNumber,
+      accumulator: [],
     });
-
   } catch (err) {
     console.log('ERROR', err);
   }
 
-  for (let i = 0; i < trimmedPullRequests.length; ++i) {
-    const pullRequestNumber = trimmedPullRequests[i].number;
+  for (let i = 0; i < openPullRequests.length; ++i) {
+    const pullRequestNumber = openPullRequests[i].number;
 
     let pullRequestData;
     try {
@@ -65,10 +33,10 @@ const getPullRequests = async function (req, res) {
       console.log('ERROR', e);
     }
 
-    trimmedPullRequests[i].commit_count = pullRequestData.data.commits;
+    openPullRequests[i].commit_count = pullRequestData.data.commits;
   }
 
-  res.send(trimmedPullRequests);
+  res.send(openPullRequests);
 }
 
 export default getPullRequests;
