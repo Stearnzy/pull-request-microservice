@@ -19,4 +19,8 @@ if (process.env.NODE_ENV !== 'test') { // This is added so that EADDRINUSE error
 
 app.use('/api/github', routes);
 
+app.use('*', function (req, res, next) {
+  res.status(404).send({ error: 'Route not found' });
+})
+
 export default app;
