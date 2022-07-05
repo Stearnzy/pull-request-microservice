@@ -1,5 +1,6 @@
 import axios from 'axios';
 import collectOpenPullRequestGeneralData from '../helpers/collectOpenPullRequestGeneralData.js';
+import { getPullRequest } from '../services/githubService.js';
 
 const getPullRequests = async function (req, res) {
   const {
@@ -26,9 +27,7 @@ const getPullRequests = async function (req, res) {
 
     let pullRequestData;
     try {
-      pullRequestData = await axios.get(`https://api.github.com/repos/${organization}/${repository}/pulls/${pullRequestNumber}`, {
-        auth: { username: process.env.GITHUB_USERNAME, token: process.env.GITHUB_ACCESS_TOKEN }
-      });
+      pullRequestData = await getPullRequest({ organization, repository, pullRequestNumber });
     } catch (e) {
       console.log('ERROR', e);
     }

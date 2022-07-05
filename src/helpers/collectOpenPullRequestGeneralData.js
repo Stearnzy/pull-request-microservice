@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { getOpenPullRequests } from '../services/githubService.js';
 
 const collectOpenPullRequestGeneralData = async ({
   organization,
@@ -6,9 +6,7 @@ const collectOpenPullRequestGeneralData = async ({
   pageNumber,
   accumulator,
 }) => {
-  const openPullRequestsRaw = await axios.get(`https://api.github.com/repos/${organization}/${repository}/pulls?state=open&per_page=100&page=${pageNumber}`, {
-    auth: { username: process.env.GITHUB_USERNAME, token: process.env.GITHUB_ACCESS_TOKEN }
-  });
+  const openPullRequestsRaw = await getOpenPullRequests({ organization, repository, pageNumber });
 
   const openPullRequestData = openPullRequestsRaw.data;
 
