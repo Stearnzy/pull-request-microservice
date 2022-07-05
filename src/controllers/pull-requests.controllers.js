@@ -10,25 +10,16 @@ const getPullRequestData = async (req, res) => {
 
     let openPullRequests;
 
-    try {
-      openPullRequests = await collectOpenPullRequestGeneralData({
-        organization,
-        repository,
-        accumulator: [],
-      });
-    } catch (err) {
-      console.log('ERROR', err);
-    }
+    openPullRequests = await collectOpenPullRequestGeneralData({
+      organization,
+      repository,
+      accumulator: [],
+    });
 
     for (let i = 0; i < openPullRequests.length; ++i) {
       const pullRequestNumber = openPullRequests[i].number;
 
-      let pullRequestData;
-      try {
-        pullRequestData = await getPullRequest({ organization, repository, pullRequestNumber });
-      } catch (err) {
-        console.log('ERROR', err);
-      }
+      const pullRequestData = await getPullRequest({ organization, repository, pullRequestNumber });
 
       openPullRequests[i].commit_count = pullRequestData.data.commits;
     }
