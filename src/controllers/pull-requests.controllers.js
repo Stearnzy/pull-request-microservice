@@ -2,37 +2,41 @@ import collectOpenPullRequestGeneralData from '../helpers/collectOpenPullRequest
 import { getPullRequest } from '../services/githubService.js';
 
 const getPullRequestData = async (req, res) => {
-  const {
-    organization,
-    repository,
-  } = req.params;
-
-  let openPullRequests;
-
   try {
-    openPullRequests = await collectOpenPullRequestGeneralData({
+    const {
       organization,
       repository,
-      accumulator: [],
-    });
-  } catch (err) {
-    console.log('ERROR', err);
-  }
+    } = req.params;
 
-  for (let i = 0; i < openPullRequests.length; ++i) {
-    const pullRequestNumber = openPullRequests[i].number;
+    let openPullRequests;
 
-    let pullRequestData;
     try {
-      pullRequestData = await getPullRequest({ organization, repository, pullRequestNumber });
-    } catch (e) {
-      console.log('ERROR', e);
+      openPullRequests = await collectOpenPullRequestGeneralData({
+        organization,
+        repository,
+        accumulator: [],
+      });
+    } catch (err) {
+      console.log('ERROR', err);
     }
 
-    openPullRequests[i].commit_count = pullRequestData.data.commits;
-  }
+    for (let i = 0; i < openPullRequests.length; ++i) {
+      const pullRequestNumber = openPullRequests[i].number;
 
-  res.send(openPullRequests);
+      let pullRequestData;
+      try {
+        pullRequestData = await getPullRequest({ organization, repository, pullRequestNumber });
+      } catch (err) {
+        console.log('ERROR', err);
+      }
+
+      openPullRequests[i].commit_count = pullRequestData.data.commits;
+    }
+
+    res.send(openPullRequests);
+  } catch (err) {
+    res.status(500).send({ error: 'Something went wrong!'});
+  }
 }
 
 export default getPullRequestData;
