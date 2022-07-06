@@ -1,4 +1,3 @@
-// import { getOpenPullRequests, getPullRequest } from './githubService.js';
 import getPullRequest from './getPullRequest.js';
 import axios from 'axios';
 import pullRequestDetails from '../fixtures/pullRequestDetails.json';
