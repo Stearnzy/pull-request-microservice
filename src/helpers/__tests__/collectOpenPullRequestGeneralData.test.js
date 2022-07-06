@@ -1,6 +1,6 @@
-import collectOpenPullRequestGeneralData from './collectOpenPullRequestGeneralData';
+import collectOpenPullRequestGeneralData from '../collectOpenPullRequestGeneralData';
 
-jest.mock('../services/getOpenPullRequests.js');
+jest.mock('../../services/getOpenPullRequests.js');
 
 describe('collectOpenPullRequestGeneralData', () => {
   // This test calls the mock getOpenPullRequests function from /services/__mocks__, which pulls on fixture files mimicing a GitHub response of one pull request per page`

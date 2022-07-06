@@ -1,6 +1,6 @@
-import getOpenPullRequests from './getOpenPullRequests.js';
+import getOpenPullRequests from '../getOpenPullRequests.js';
 import axios from 'axios';
-import fourPullRequests from '../fixtures/fourPullRequests.json';
+import fourPullRequests from '../../fixtures/fourPullRequests.json';
 
 jest.mock('axios');
 
