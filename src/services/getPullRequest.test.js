@@ -1,12 +1,12 @@
 import getPullRequest from './getPullRequest.js';
 import axios from 'axios';
-import pullRequestDetails from '../fixtures/pullRequestDetails.json';
+import pullRequestDetails116 from '../fixtures/pullRequestDetails116.json';
 
 jest.mock('axios');
 
 describe('getPullRequest', () => {
   it('returns raw data for one pull request', async () => {
-    axios.get.mockResolvedValue(pullRequestDetails);
+    axios.get.mockResolvedValue(pullRequestDetails116);
 
     const res = await getPullRequest({
       organization: 'turingschool-examples',
@@ -14,11 +14,12 @@ describe('getPullRequest', () => {
       pullRequestNumber: 116,
     });
 
-    expect(res.url).toBeDefined();
-    expect(res.id).toBeDefined();
-    expect(res.user.login).toBeDefined();
-    expect(res.commits).toBeDefined();
+    expect(res.data).toBeDefined();
+    expect(res.data.url).toBeDefined();
+    expect(res.data.id).toBeDefined();
+    expect(res.data.user.login).toBeDefined();
+    expect(res.data.commits).toBeDefined();
 
-    expect(res.commits).toEqual(300);
+    expect(res.data.commits).toEqual(300);
   })
 });
