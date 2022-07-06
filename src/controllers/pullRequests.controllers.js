@@ -1,3 +1,4 @@
+// Using a class could probably be better here, especially since I'm getting a `Rename this file to "getPullRequestdata"` lint warning.  My experience so far has been in Hapi.js, so I'm more used to this functional approach
 import collectOpenPullRequestGeneralData from '../helpers/collectOpenPullRequestGeneralData.js';
 import getPullRequest from '../services/getPullRequest.js';
 

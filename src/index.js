@@ -17,6 +17,7 @@ if (process.env.NODE_ENV !== 'test') { // This is added so that EADDRINUSE error
   app.listen(PORT, () => console.log(`SERVER RUNNING: PORT ${PORT}`));
 }
 
+// I'm not sure if this is the best place to define my API's base url
 app.use('/api/github', routes);
 
 app.use('*', function (req, res, next) {

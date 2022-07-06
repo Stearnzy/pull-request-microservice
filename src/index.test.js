@@ -30,6 +30,7 @@ describe('endpoint calls', () => {
     expect(res.status).toBeGreaterThanOrEqual(500);
   })
 
+  // Main integration test
   it('successfully retrieves pull request data', async () => {
     const res = await request.get('/api/github/turingschool-examples/monster_shop_2005/open-pull-requests');
 
