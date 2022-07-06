@@ -9,16 +9,18 @@
 * Axios: to make API calls to GitHub
 * Jest: testing
 * Supertest
-* Cors: allow for future security configuration
+* Cors: allow for future security configuration (not configured)
 * Babel: allow for ES6 import/export syntax
 
 ## Setup
-Ensure that `node` and `npm` are installed and up to date.
+Ensure that `node` and `npm` are installed and up to date. Also use a GitHub account to create a new personal access token to add to a `.env` file so that successful GitHub API requests can be made.  No need to define a particular scope for the token.
+
 1. Run `git clone git@github.com:Stearnzy/pull-request-microservice.git` in a new directory
-2. cd into `pull-request-microservice`
-3. Run `npm install`
-4. Run `npm test -- --coverage` to run tests with code coverage reporting
-5. Start server with `npm start` and start hitting endpoints!  The endpoint is structured as follows:
+2. `cd` into `pull-request-microservice`
+3. `touch` a `.env` file at the project's root and add `PORT=<desiredPortNumber>` and `GITHUB_ACCESS_TOKEN=<yourGHAccessToken>`
+4. Run `npm install`
+5. Run `npm test -- --coverage` to run tests with code coverage reporting
+6. Start server with `npm start` and start hitting endpoints!  The endpoint is structured as follows:
 ```
 http://localhost:5000/api/github/:organization/:repository/open-pull-requests
 ```
