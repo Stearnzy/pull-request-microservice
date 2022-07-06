@@ -18,6 +18,10 @@ Ensure that `node` and `npm` are installed and up to date.
 2. cd into `pull-request-microservice`
 3. Run `npm install`
 4. Run `npm test -- --coverage` to run tests with code coverage reporting
+5. Start server with `npm start` and start hitting endpoints!  The endpoint is structured as follows:
+```
+http://localhost:5000/api/github/:organization/:repository/open-pull-requests
+```
 
 ### Decisions
 1. ES6 imports syntax for a more modern application.
@@ -36,4 +40,6 @@ Ensure that `node` and `npm` are installed and up to date.
 2. If this was a bigger project, I would have a more effective error logging/handling system in place.  One example would be having a logger for each of the GitHub service methods so that I could provide a more detailed error message to the user, such as if the organization or repository name that was provided does not exist.
 3. Reflecting on this project, perhaps a class-oriented, OOP approach would have been a better practice for things such as route and controllers.
 4. A particular style guide could be added to this project.
-5. In terms of testing, I did not know how to test `app.listen` within the `index.js` file
+5. In terms of testing, I did not know how to test `app.listen` within the `index.js` file, so I would add that in the future once I figured out how.  As in most cases, more edge case testing is always better, but I wanted to focus on demonstrating mocking with Jest and accounting for multiple-page responses from the GitHub API.
+
+Thank you so much for seeing my work!
