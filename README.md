@@ -36,10 +36,10 @@ http://localhost:5000/api/github/:organization/:repository/open-pull-requests
 * Scalability: Utilized a recursive function to iterate through pages of pull requests (in the event that there were more than 100) to ensure all pull requests for a repository are returned.
 
 ### Places to Improve
-1. Being my first time since attending code school working with Express, my file naming and structure could be improved.  I saw there are many different approaches to file naming conventions, so I went with a template that made sense to me.
+1. Being my first time using Express since my brief interaction with it at Turing, my file naming and structure could be improved.  I saw there are many different approaches to file naming conventions, so I went with a template that made sense to me.
 2. If this was a bigger project, I would have a more effective error logging/handling system in place.  One example would be having a logger for each of the GitHub service methods so that I could provide a more detailed error message to the user, such as if the organization or repository name that was provided does not exist.
-3. Reflecting on this project, perhaps a class-oriented, OOP approach would have been a better practice for things such as route and controllers.
+3. Reflecting on this project, perhaps a class-oriented, OOP approach may have had benefits over the functional style I chose.  Perhaps naming conventions such as for route and controllers could have been improved by this.
 4. A particular style guide could be added to this project.
-5. In terms of testing, I did not know how to test `app.listen` within the `index.js` file, so I would add that in the future once I figured out how.  As in most cases, more edge case testing is always better, but I wanted to focus on demonstrating mocking with Jest and accounting for multiple-page responses from the GitHub API.
+5. In terms of testing, I did not know how to test `app.listen` within the `index.js` file, so I would add that in the future once I figured out how.  As in most cases, more edge case testing is always better, but I wanted to focus on demonstrating mocking with Jest and accounting for multiple-page responses from the GitHub API, while providing happy-path unit and integration tests.
 
 Thank you so much for seeing my work!
