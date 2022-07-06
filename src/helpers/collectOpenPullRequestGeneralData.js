@@ -1,6 +1,6 @@
 // I decided to make this helper a recursive function due to the fact that the GitHub API only returns up to 100 pull requests per page.  In the event that a repository had more than 100 pull requests, I wanted to ensure that the data set returned was complete.
 
-import { getOpenPullRequests } from '../services/githubService.js';
+import getOpenPullRequests from '../services/getOpenPullRequests.js';
 
 const collectOpenPullRequestGeneralData = async ({
   organization,
