@@ -1,7 +1,7 @@
 import Express from 'express';
 import Path from 'path';
 import Dotenv from 'dotenv';
-import routes from './routes/pull-requests.routes.js';
+import routes from './routes/pullRequests.routes.js';
 
 Dotenv.config({ path: Path.resolve(process.cwd(), '.env') }); // Added so .env file variables can be used
 

@@ -1,5 +1,5 @@
 import Express from 'express';
-import getPullRequestData from '../controllers/pull-requests.controllers.js';
+import getPullRequestData from '../controllers/pullRequests.controllers.js';
 
 const router = Express.Router();
 
