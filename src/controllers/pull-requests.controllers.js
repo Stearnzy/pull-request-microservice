@@ -1,5 +1,5 @@
 import collectOpenPullRequestGeneralData from '../helpers/collectOpenPullRequestGeneralData.js';
-import { getPullRequest } from '../services/githubService.js';
+import getPullRequest from '../services/getPullRequest.js';
 
 const getPullRequestData = async (req, res) => {
   try {
